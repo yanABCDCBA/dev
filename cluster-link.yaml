@@ -1,0 +1,126 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-link-config
+  namespace: hivesec
+  labels:
+    app: cluster-link
+data:
+  registry: 10.102.108.255/qt
+  server: hive.qingteng.cn
+  com_id: 8249a39f62c635cbecb3
+  key: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0NCk1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBMTBLaHFDT2RnUEhlQTllNVJaVS8NCktqaHl6UHRqUEpCWWI0RmFqYmRQRVhKb3Nqall1QTFROWxrU2MzZ3RsRXlIWHhBQUFwMWZ1RnBLU0d5My96R3QNCkphK2JDZUlSV04yaWNac1Y0enQweUtDME92RitMa3o0TlZEWlJtYk5HQ2xxMHJUNXE4cnFrWERJZFRUSjN0bnkNCmJibWZKbmxORkhINzlwekxTVUo0UEhpb3ZDY2xhb0xMeGtubzN1N2NnM0JwdnB2cExzYTlDMjNWTHNSeURTSVMNCnNZeVE5Rjd6NnM1ay9NcC8raUdFY0U4YnMrdDJ0SUt0R2xxaitUMkJRRklWTUVSTklxN01DZFhrd2ZkZHZLVTUNCnR6R3FvMVY5dDlDVEZBU0RlS0VmbmszNndDcmUwMGttQnlrelZXRExTR1l3NGVaN09WUnV6b3RPTFJxMWpKdjYNCjNRSURBUUFCDQotLS0tLUVORCBQVUJMSUMgS0VZLS0tLS0=
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cluster-link-ssl-secret
+  namespace: hivesec
+  labels:
+    app: cluster-link
+data:
+  cluster-link.p12: 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
+  ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZpakNDQTNLZ0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREJsTVFzd0NRWURWUVFHRXdKRFRqRU8KTUF3R0ExVUVDQk1GU0hWQ1pXa3hEakFNQmdOVkJBY1RCVmQxYUdGdU1SRXdEd1lEVlFRS0V3aFJhVzVuZEdWdQpaekVOTUFzR0ExVUVDeE1FU0dsMlpURVVNQklHQTFVRUF4TUxjV2x1WjNSbGJtY3VZMjR3SGhjTk1qRXhNakUwCk1UQXlNVFV3V2hjTk1qTXdOakUwTVRBek1UUTNXakJsTVFzd0NRWURWUVFHRXdKRFRqRU9NQXdHQTFVRUNCTUYKU0hWQ1pXa3hEakFNQmdOVkJBY1RCVmQxYUdGdU1SRXdEd1lEVlFRS0V3aFJhVzVuZEdWdVp6RU5NQXNHQTFVRQpDeE1FU0dsMlpURVVNQklHQTFVRUF4TUxjV2x1WjNSbGJtY3VZMjR3Z2dJaU1BMEdDU3FHU0liM0RRRUJBUVVBCkE0SUNEd0F3Z2dJS0FvSUNBUURXOXpYT2dOYzJ0bUk4ZFl1ckMwTldVdlFTdEE2QTB5UG9XaEVMN2pIUFBrckoKTGJjWUZDQXNSWVAzRWZzdGpmQjlFcUpXWlRiWDVGSDR0Y2RTU1c3TkovejBsb0RqT3hKdkZIWEZHLzVEZi9qLwplMGtIdmJ2ZnNDRzM5N0VvTUFMbzdOOU55bjdwUERVODBaMm1iYUxqbnA2VzJ6ZW9rczNLdzg0RHdvYkRtVmlICnhyWVhRWmltM09mNGpQQjFxMmtuUmVoelBoczFtYUFmeDJ2U2ZvZVV1QTlUdmRrSXZXUUxTc1FBOXVKRUdGUlUKT2ovL3YrUnZPZTFxekkybFVCczBBQkkvb243a2Y3NjRmb2VLeE1rc0FhRG1WK0JBT2FhdW5HQi9TZkZXRGlaRwpwQlBXV1NyRjlFL24xd25yRm1uclhzdGFyaFBFS2FpTlkxRi9SN2xqVlgzdXNHZlI5dExub3hEZXBjVjJtcEhjCko1UmhpOHBtZzduQWt4NVRlWmloY01nYXl6SWd6cnJJV0RZNGQya3BUZ0JWSUR4YmpzcTZIMEswU3VqelBpREYKNHoyMC8xR3hCU3hSaGJLK3pJTFJpcGg2ZVFwOU1VMzBXdGZtMzBmNkFjNktGTTdhakN6NXhVK3dUb29Fczd6bAo4WllLUVh1MURzMmZsdnl6bU4zdzhtYmNCWS9xZENzK3luOWErOWlWUTNZVkozbjdaT2EyNWVSQ005eHA0VlJiCnUrckJ4NHRJei9PNkZ1Y0Q4blRBYm1ndVZHakJNOTBlMFVSaTUyRjMxTlVoZCtyb3k0T3NBZXY1N1Jna3pWNjAKcVZOZEF5SW83ODZ1SHozaFZSczR1ZktZc0VYWW8yWDNVbk1Ta3NwOWV1dXpBMzdIN0pydW82ZHdUUXprSHdJRApBUUFCbzBVd1F6QU9CZ05WSFE4QkFmOEVCQU1DQVFZd0VnWURWUjBUQVFIL0JBZ3dCZ0VCL3dJQkFEQWRCZ05WCkhRNEVGZ1FVWFJKdGhqTlpRY1BWOE5oWWs0UjdpQnlqWnVRd0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dJQkFIVG8KWlJlSnRFaXJlVzFpVkJwVVhJSnVUdTl4emNZbEQxei9qQ0xWcE90bWlwdDUrUVo0VDViVlcvRUthNkJMNTB1cAp2RmNTb3RYTjFJL1hUWlhTZFpSczRuQjQ5dXh6cUx4QTV3VXFqUzhwTGtjTmFnSVA5UzNNZlpiS2s3UVpxTk4yCm1hcXc2b3ZxNlhNYU1aMERXRkhUQ2tVeXNMZnh2MGtNQ3VBa1BTbXFpS2pzb0s2NU8rRmtOQVFZZ2dMNmg2cGUKSW5WdXFSeFloekNXNmZ0dHZzQkNjdzB2aU1ZNWozMHVGR25rTlZoMSt0QnorVE1FMmNDUnE4a2QyamVUMkt4Rgo5eDFPQ3FRdlYxcE43OVZpSTRJUW13SFF3M04wQkN3b1luM3pFd0dOTXlnc1QzMDlDa2FoRGlXVXh1bGJLanQxCnlmL3JPR0FOaktqR3UzVDNtdDd4VUFCU3VlbVhnVmNKd1g5L1ErVm1tTlZoS3U0dUhnK0t4SGt0d3Z6d0pnbmoKTmk5ZFdjb3FWWlVTUXBVRGVmd0MzNmhka2k2bmFYWnlhZFh5MjNuTi9taHZ3TU1hK0hjOUdOQTl5c1VXQ2lFUgphT01IeXVUbzVGR3dLNzVYMDg3dStIUFZTdlZMRjZISlpkZ0xTaExZODBTSXhTTkZYWkg4MmtPb3JEQ3lTeGRPCmRCbDVFc0IrMS9iNGVPSjNHNWVLdGYwZkZDU08vWW9ySCtiU2VhOEZCWHI5dVdwcmhSVktFNDJkQUJVeU1MeEkKVUhldU5CcWtYZFdiN2h1bks3akh4QVYwRGZpNWpDM0g5azh2NnRMUVcrb254cVBGbDJ3R29OVzhhdm45SUd3YQpTL2dTYkJZUW5XMWRyKzVxcENjcEZ6aTE0eVJ1QUNFazlmZElGSUtrCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-link
+  namespace: hivesec
+  labels:
+    app: cluster-link
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cluster-link
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cluster-link
+    spec:
+      serviceAccountName: hivesec-central-sa
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: hivesec-secret
+      containers:
+      - name: cluster-link
+        image: 10.102.108.255/qt/cluster-link:1.22
+        imagePullPolicy: Always
+        securityContext:
+          readOnlyRootFilesystem: true
+        livenessProbe:
+          tcpSocket:
+            port: 9001
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 5
+        readinessProbe:
+          tcpSocket:
+            port: 9001
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+        env:
+        - name: HIVE_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: SELF_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: JAVA_TOOL_OPTIONS
+          value: -Xmx800m -Dserver.port=9001
+        - name: PROXY
+          value: ''
+        volumeMounts:
+        - name: log
+          mountPath: /var/log/clusterlink/
+        - name: ssl-secret
+          mountPath: /etc/cluster-link/ssl/
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp/
+          readOnly: false
+        resources:
+          limits:
+            cpu: '0.3'
+            memory: 800Mi
+          requests:
+            cpu: '0.2'
+            memory: 500Mi
+        ports:
+        - name: cluster-link
+          containerPort: 9001
+          protocol: TCP
+      restartPolicy: Always
+      volumes:
+      - name: log
+        hostPath:
+          path: /var/log/hiveagent/
+      - name: ssl-secret
+        secret:
+          secretName: cluster-link-ssl-secret
+      - name: tmp
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-link
+  namespace: hivesec
+  labels:
+    app: cluster-link
+spec:
+  type: ClusterIP
+  selector:
+    app: cluster-link
+  ports:
+  - name: cluster-link
+    port: 9001
+    targetPort: 9001
+    protocol: TCP

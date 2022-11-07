@@ -1,0 +1,89 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyIxMC4xMDIuMTA4LjI1NS9xdCI6eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJIYXJib3I1NDMyMSIsImF1dGgiOiJZV1J0YVc0NlNHRnlZbTl5TlRRek1qRT0ifX19
+kind: Secret
+metadata:
+  creationTimestamp: "2022-11-07T09:38:00Z"
+  name: hivesec-secret
+  namespace: hivesec
+  resourceVersion: "29994777"
+  uid: c5807722-7403-4218-8133-a75444c7bbc6
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: "hivesec-central-sa"
+  labels:
+    name: hivesec-central-sa
+    role: security
+  namespace: "hivesec"
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: hivesec-central-cr
+  labels:
+    name: hivesec-central-cr
+    role: security
+rules:
+  - apiGroups: ["", "extensions", "apps", "batch"]
+    resources: ["namespaces", "nodes", "pods", "services", "endpoints", "daemonsets", "configmaps", "deployments", "replicationcontrollers", "replicasets", "statefulsets", "jobs", "cronjobs"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["rbac.authorization.k8s.io/v1", "rbac.authorization.k8s.io", "*"]
+    resources: ["clusterrolebindings","rolebindings","clusterroles", "roles"]
+    verbs: ["get", "list"]
+  - apiGroups: ["networking.k8s.io", "extensions/v1beta1", "extensions"]
+    resources: ["networkpolicies"]
+    verbs: ["get", "list", "create", "delete", "update"]
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hivesec-central-crb
+  labels:
+    name: hivesec-central-crb
+    role: security
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: hivesec-central-cr
+subjects:
+- kind: ServiceAccount
+  name: hivesec-central-sa
+  namespace: "hivesec"
+  
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: "hivesec"
+  name: hivesec-central-role
+  labels:
+    name: hivesec-central-role
+rules:
+  - apiGroups: ["", "extensions", "apps"]
+    resources: ["pods", "services", "endpoints", "daemonsets", "configmaps", "deployments","secrets","serviceaccounts"]
+    verbs: ["get", "list", "create", "delete", "update"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: "hivesec"
+  name: hivesec-central-rob
+  labels:
+    name: hivesec-central-rob
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: hivesec-central-role
+subjects:
+- kind: ServiceAccount
+  name: hivesec-central-sa
+  namespace: "hivesec"
+    
